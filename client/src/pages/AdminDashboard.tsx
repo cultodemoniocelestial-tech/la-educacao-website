@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
+import BlogPostForm from "@/components/BlogPostForm";
 import { 
   LayoutDashboard, 
   FileText, 
@@ -22,6 +23,8 @@ export default function AdminDashboard() {
   const [, setLocation] = useLocation();
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [activeTab, setActiveTab] = useState("overview");
+  const [editingBlogPost, setEditingBlogPost] = useState<any>(null);
+  const [showBlogForm, setShowBlogForm] = useState(false);
 
   const handleLogout = () => {
     localStorage.removeItem("adminLoggedIn");
@@ -201,11 +204,39 @@ function OverviewTab() {
 
 // Blog Tab
 function BlogTab() {
+  const [showForm, setShowForm] = useState(false);
+  const [editingPost, setEditingPost] = useState<any>(null);
+
+  const handleSave = (post: any) => {
+    console.log("Salvando post:", post);
+    setShowForm(false);
+    setEditingPost(null);
+  };
+
+  if (showForm) {
+    return (
+      <BlogPostForm
+        post={editingPost}
+        onSave={handleSave}
+        onCancel={() => {
+          setShowForm(false);
+          setEditingPost(null);
+        }}
+      />
+    );
+  }
+
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <h3 className="text-2xl font-black text-white">Gerenciar Artigos</h3>
-        <Button className="bg-gradient-to-r from-secondary to-pink-500 text-white font-bold rounded-xl flex items-center gap-2">
+        <Button
+          onClick={() => {
+            setEditingPost(null);
+            setShowForm(true);
+          }}
+          className="bg-gradient-to-r from-secondary to-pink-500 text-white font-bold rounded-xl flex items-center gap-2"
+        >
           <Plus className="w-5 h-5" />
           Novo Artigo
         </Button>
@@ -213,17 +244,23 @@ function BlogTab() {
 
       <div className="space-y-3">
         {[
-          { title: "Tendências em EAD 2024", date: "15/12/2024", views: 234 },
-          { title: "Como escolher um curso online", date: "10/12/2024", views: 156 },
-          { title: "Certificação profissional: Guia completo", date: "05/12/2024", views: 89 },
-        ].map((article, idx) => (
-          <div key={idx} className="bg-slate-800/50 backdrop-blur-xl border border-slate-700/50 rounded-xl p-4 flex items-center justify-between hover:border-secondary/50 transition-all">
+          { id: "1", title: "Tendências em EAD 2024", date: "15/12/2024", views: 234 },
+          { id: "2", title: "Como escolher um curso online", date: "10/12/2024", views: 156 },
+          { id: "3", title: "Certificação profissional: Guia completo", date: "05/12/2024", views: 89 },
+        ].map((article) => (
+          <div key={article.id} className="bg-slate-800/50 backdrop-blur-xl border border-slate-700/50 rounded-xl p-4 flex items-center justify-between hover:border-secondary/50 transition-all">
             <div>
               <p className="text-white font-bold">{article.title}</p>
               <p className="text-slate-400 text-sm">{article.date} • {article.views} visualizações</p>
             </div>
             <div className="flex gap-2">
-              <button className="p-2 rounded-lg bg-blue-500/20 text-blue-400 hover:bg-blue-500/30 transition-all">
+              <button
+                onClick={() => {
+                  setEditingPost({ title: article.title });
+                  setShowForm(true);
+                }}
+                className="p-2 rounded-lg bg-blue-500/20 text-blue-400 hover:bg-blue-500/30 transition-all"
+              >
                 <Edit className="w-5 h-5" />
               </button>
               <button className="p-2 rounded-lg bg-red-500/20 text-red-400 hover:bg-red-500/30 transition-all">
