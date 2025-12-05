@@ -141,10 +141,18 @@ export default function Home() {
               {[
                 {
                   title: "Maior Repasse do Brasil",
-                  desc: "Você terá o maior repasse do Brasil, com condições exclusivas que vão acelerar seu negócio.",
+                  desc: "Você terá o maior repasse do Brasil, com condições exclusivas que vão acelerar seu negócio. Sem taxas de adesão ou royalties, garantindo ser a escolha mais lucrativa do mercado educacional. Retorno mínimo de R$ 1.000 por aluno matriculado.",
                   icon: Zap,
                   color: "from-yellow-500 to-orange-500",
-                  delay: "0"
+                  delay: "0",
+                  details: [
+                    "Dois modelos de repasse flexíveis",
+                    "Sem taxas de adesão ou royalties",
+                    "R$ 1.000 por aluno (mínimo)",
+                    "4.000+ cursos reconhecidos pelo MEC",
+                    "Liberdade total de precificação",
+                    "Suporte comercial e marketing gratuito"
+                  ]
                 },
                 {
                   title: "Liberdade Total",
@@ -174,6 +182,16 @@ export default function Home() {
                       <p className="text-slate-300 leading-relaxed flex-grow">
                         {item.desc}
                       </p>
+                      {item.details && (
+                        <div className="mt-6 space-y-2 border-t border-slate-700/50 pt-6">
+                          {item.details.map((detail, idx) => (
+                            <div key={idx} className="flex items-start gap-2 text-sm text-slate-300">
+                              <CheckCircle2 className="w-4 h-4 text-secondary flex-shrink-0 mt-0.5" />
+                              <span>{detail}</span>
+                            </div>
+                          ))}
+                        </div>
+                      )}
                       <div className="mt-6 flex items-center text-secondary font-bold group-hover:translate-x-2 transition-transform">
                         Saiba mais <ChevronRight className="w-5 h-5 ml-2" />
                       </div>
