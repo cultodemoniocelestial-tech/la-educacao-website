@@ -16,10 +16,7 @@ export default function Home() {
       <main className="flex-grow">
         {/* Hero Section - Ousado e Moderno */}
         <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
-          {/* Animated Background Elements */}
-          <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl from-secondary/30 to-transparent rounded-full blur-3xl animate-blob -z-10" />
-          <div className="absolute bottom-0 left-0 w-96 h-96 bg-gradient-to-tr from-primary/20 to-transparent rounded-full blur-3xl animate-blob animation-delay-2000 -z-10" />
-          <div className="absolute top-1/2 left-1/2 w-96 h-96 bg-gradient-to-br from-purple-500/10 to-transparent rounded-full blur-3xl animate-blob animation-delay-4000 -z-10" />
+          {/* Animated Background Elements - Removed for cleaner look */}
           
           {/* Grid Background */}
           <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.05)_1px,transparent_1px)] bg-[size:50px_50px] opacity-20" />
