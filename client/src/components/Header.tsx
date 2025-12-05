@@ -90,6 +90,11 @@ export default function Header() {
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="w-48 bg-slate-800 border-slate-700">
+              <Link href="/admin/login">
+                <DropdownMenuItem className="cursor-pointer text-slate-300 hover:text-secondary hover:bg-slate-700/50">
+                  Admin
+                </DropdownMenuItem>
+              </Link>
               <DropdownMenuItem className="cursor-pointer text-slate-300 hover:text-secondary hover:bg-slate-700/50">
                 Área do Aluno
               </DropdownMenuItem>
@@ -127,6 +132,11 @@ export default function Header() {
             </Link>
           ))}
           <div className="h-px bg-slate-700/30 my-2" />
+          <Link href="/admin/login">
+            <Button variant="outline" className="w-full justify-start text-slate-300 border-slate-600 hover:bg-slate-800 hover:text-secondary" onClick={() => setMobileMenuOpen(false)}>
+              Admin
+            </Button>
+          </Link>
           <Button variant="outline" className="w-full justify-start text-slate-300 border-slate-600 hover:bg-slate-800 hover:text-secondary">
             Área do Aluno
           </Button>
