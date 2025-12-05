@@ -3,6 +3,7 @@ import Footer from "@/components/Footer";
 import { AnimatedElement } from "@/components/AnimatedElements";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import VideoTestimonialsSection from "@/components/VideoTestimonialsSection";
 import { Users, Target, Lightbulb, Heart, TrendingUp, Award, Globe, Zap, CheckCircle2, ArrowRight } from "lucide-react";
 
 export default function About() {
@@ -264,6 +265,9 @@ export default function About() {
             </div>
           </div>
         </section>
+
+        {/* Video Testimonials Section */}
+        <VideoTestimonialsSection />
 
         {/* CTA Section */}
         <section className="py-24">
