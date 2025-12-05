@@ -27,6 +27,7 @@ export default function Header() {
     { name: "Início", href: "/" },
     { name: "Sobre Nós", href: "/sobre" },
     { name: "Cursos", href: "/cursos" },
+    { name: "FAQ", href: "/faq" },
     { name: "Blog", href: "/blog" },
     { name: "Ouvidoria", href: "/ouvidoria" },
   ];
