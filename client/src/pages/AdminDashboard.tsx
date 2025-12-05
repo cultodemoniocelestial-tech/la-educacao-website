@@ -8,6 +8,7 @@ import MessagesTab from "@/components/MessagesTab";
 import StatsTab from "@/components/StatsTab";
 import CompanySettingsTab from "@/components/CompanySettingsTab";
 import UsersTab from "@/components/UsersTab";
+import SEOTab from "@/components/SEOTab";
 import { 
   LayoutDashboard, 
   FileText, 
@@ -25,6 +26,7 @@ import {
   ChevronRight,
   Shield,
   TrendingUp,
+  Search,
 } from "lucide-react";;
 
 export default function AdminDashboard() {
@@ -48,6 +50,7 @@ export default function AdminDashboard() {
     { id: "messages", label: "Mensagens", icon: MessageSquare },
     { id: "about", label: "Sobre Nós", icon: Users },
     { id: "users", label: "Usuários", icon: Shield },
+    { id: "seo", label: "SEO", icon: Search },
     { id: "settings", label: "Configurações", icon: Settings },
   ];
 
@@ -136,6 +139,7 @@ export default function AdminDashboard() {
           {activeTab === "messages" && <MessagesTab />}
           {activeTab === "about" && <AboutTab />}
           {activeTab === "users" && <UsersTab />}
+          {activeTab === "seo" && <SEOTab />}
           {activeTab === "settings" && <CompanySettingsTab />}
         </div>
       </div>
