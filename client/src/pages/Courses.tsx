@@ -1,4 +1,5 @@
 import { useState, useMemo } from "react";
+import { Link } from "wouter";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Badge } from "@/components/ui/badge";
@@ -361,9 +362,11 @@ function CourseCard({ course, delay }: { course: Course; delay: number }) {
                   R$ {course.price.toLocaleString("pt-BR")}
                 </div>
               </div>
-              <Button className="bg-gradient-to-r from-secondary to-pink-500 text-white font-bold rounded-xl p-3 h-auto hover:shadow-lg hover:shadow-secondary/50 transition-all group-hover:scale-110 duration-300">
-                <ArrowRight className="w-5 h-5" />
-              </Button>
+              <Link href={`/cursos/${course.id}`}>
+                <Button className="bg-gradient-to-r from-secondary to-pink-500 text-white font-bold rounded-xl p-3 h-auto hover:shadow-lg hover:shadow-secondary/50 transition-all group-hover:scale-110 duration-300">
+                  <ArrowRight className="w-5 h-5" />
+                </Button>
+              </Link>
             </div>
           </div>
         </div>
