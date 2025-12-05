@@ -3,6 +3,8 @@ import { useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import BlogPostForm from "@/components/BlogPostForm";
 import VideoTestimonialForm from "@/components/VideoTestimonialForm";
+import CourseForm from "@/components/CourseForm";
+import MessagesTab from "@/components/MessagesTab";
 import { 
   LayoutDashboard, 
   FileText, 
@@ -38,6 +40,7 @@ export default function AdminDashboard() {
     { id: "blog", label: "Blog", icon: FileText },
     { id: "videos", label: "Depoimentos", icon: Video },
     { id: "courses", label: "Cursos", icon: BookOpen },
+    { id: "messages", label: "Mensagens", icon: MessageSquare },
     { id: "about", label: "Sobre Nós", icon: Users },
     { id: "settings", label: "Configurações", icon: Settings },
   ];
@@ -124,6 +127,7 @@ export default function AdminDashboard() {
           {activeTab === "blog" && <BlogTab />}
           {activeTab === "videos" && <VideosTab />}
           {activeTab === "courses" && <CoursesTab />}
+          {activeTab === "messages" && <MessagesTab />}
           {activeTab === "about" && <AboutTab />}
           {activeTab === "settings" && <SettingsTab />}
         </div>
@@ -354,11 +358,39 @@ function VideosTab() {
 
 // Courses Tab
 function CoursesTab() {
+  const [showForm, setShowForm] = useState(false);
+  const [editingCourse, setEditingCourse] = useState<any>(null);
+
+  const handleSave = (course: any) => {
+    console.log("Salvando curso:", course);
+    setShowForm(false);
+    setEditingCourse(null);
+  };
+
+  if (showForm) {
+    return (
+      <CourseForm
+        course={editingCourse}
+        onSave={handleSave}
+        onCancel={() => {
+          setShowForm(false);
+          setEditingCourse(null);
+        }}
+      />
+    );
+  }
+
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <h3 className="text-2xl font-black text-white">Gerenciar Cursos</h3>
-        <Button className="bg-gradient-to-r from-secondary to-pink-500 text-white font-bold rounded-xl flex items-center gap-2">
+        <Button
+          onClick={() => {
+            setEditingCourse(null);
+            setShowForm(true);
+          }}
+          className="bg-gradient-to-r from-secondary to-pink-500 text-white font-bold rounded-xl flex items-center gap-2"
+        >
           <Plus className="w-5 h-5" />
           Novo Curso
         </Button>
@@ -366,17 +398,23 @@ function CoursesTab() {
 
       <div className="space-y-3">
         {[
-          { title: "Python para Iniciantes", students: 234, status: "Ativo" },
-          { title: "Marketing Digital Completo", students: 156, status: "Ativo" },
-          { title: "Gestão de Projetos", students: 89, status: "Ativo" },
-        ].map((course, idx) => (
-          <div key={idx} className="bg-slate-800/50 backdrop-blur-xl border border-slate-700/50 rounded-xl p-4 flex items-center justify-between hover:border-secondary/50 transition-all">
+          { id: "1", title: "Python para Iniciantes", students: 234, status: "Ativo" },
+          { id: "2", title: "Marketing Digital Completo", students: 156, status: "Ativo" },
+          { id: "3", title: "Gestão de Projetos", students: 89, status: "Ativo" },
+        ].map((course) => (
+          <div key={course.id} className="bg-slate-800/50 backdrop-blur-xl border border-slate-700/50 rounded-xl p-4 flex items-center justify-between hover:border-secondary/50 transition-all">
             <div>
               <p className="text-white font-bold">{course.title}</p>
               <p className="text-slate-400 text-sm">{course.students} alunos • Status: {course.status}</p>
             </div>
             <div className="flex gap-2">
-              <button className="p-2 rounded-lg bg-blue-500/20 text-blue-400 hover:bg-blue-500/30 transition-all">
+              <button
+                onClick={() => {
+                  setEditingCourse({ title: course.title });
+                  setShowForm(true);
+                }}
+                className="p-2 rounded-lg bg-blue-500/20 text-blue-400 hover:bg-blue-500/30 transition-all"
+              >
                 <Edit className="w-5 h-5" />
               </button>
               <button className="p-2 rounded-lg bg-red-500/20 text-red-400 hover:bg-red-500/30 transition-all">
