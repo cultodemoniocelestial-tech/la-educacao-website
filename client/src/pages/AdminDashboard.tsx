@@ -5,22 +5,27 @@ import BlogPostForm from "@/components/BlogPostForm";
 import VideoTestimonialForm from "@/components/VideoTestimonialForm";
 import CourseForm from "@/components/CourseForm";
 import MessagesTab from "@/components/MessagesTab";
+import StatsTab from "@/components/StatsTab";
+import CompanySettingsTab from "@/components/CompanySettingsTab";
+import UsersTab from "@/components/UsersTab";
 import { 
   LayoutDashboard, 
   FileText, 
   Video, 
-  BookOpen, 
-  Settings, 
-  LogOut, 
-  Menu, 
+  BookOpen,
+  Users,
+  Settings,
+  Menu,
   X,
+  LogOut,
   Plus,
   Edit,
   Trash2,
-  Users,
+  MessageSquare,
+  ChevronRight,
+  Shield,
   TrendingUp,
-  MessageSquare
-} from "lucide-react";
+} from "lucide-react";;
 
 export default function AdminDashboard() {
   const [, setLocation] = useLocation();
@@ -42,6 +47,7 @@ export default function AdminDashboard() {
     { id: "courses", label: "Cursos", icon: BookOpen },
     { id: "messages", label: "Mensagens", icon: MessageSquare },
     { id: "about", label: "Sobre Nós", icon: Users },
+    { id: "users", label: "Usuários", icon: Shield },
     { id: "settings", label: "Configurações", icon: Settings },
   ];
 
@@ -123,13 +129,14 @@ export default function AdminDashboard() {
 
         {/* Content Area */}
         <div className="flex-grow overflow-auto p-8">
-          {activeTab === "overview" && <OverviewTab />}
+          {activeTab === "overview" && <StatsTab />}
           {activeTab === "blog" && <BlogTab />}
           {activeTab === "videos" && <VideosTab />}
           {activeTab === "courses" && <CoursesTab />}
           {activeTab === "messages" && <MessagesTab />}
           {activeTab === "about" && <AboutTab />}
-          {activeTab === "settings" && <SettingsTab />}
+          {activeTab === "users" && <UsersTab />}
+          {activeTab === "settings" && <CompanySettingsTab />}
         </div>
       </div>
     </div>
