@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import BlogPostForm from "@/components/BlogPostForm";
+import VideoTestimonialForm from "@/components/VideoTestimonialForm";
 import { 
   LayoutDashboard, 
   FileText, 
@@ -276,11 +277,39 @@ function BlogTab() {
 
 // Videos Tab
 function VideosTab() {
+  const [showForm, setShowForm] = useState(false);
+  const [editingTestimonial, setEditingTestimonial] = useState<any>(null);
+
+  const handleSave = (testimonial: any) => {
+    console.log("Salvando depoimento:", testimonial);
+    setShowForm(false);
+    setEditingTestimonial(null);
+  };
+
+  if (showForm) {
+    return (
+      <VideoTestimonialForm
+        testimonial={editingTestimonial}
+        onSave={handleSave}
+        onCancel={() => {
+          setShowForm(false);
+          setEditingTestimonial(null);
+        }}
+      />
+    );
+  }
+
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <h3 className="text-2xl font-black text-white">Gerenciar Depoimentos</h3>
-        <Button className="bg-gradient-to-r from-secondary to-pink-500 text-white font-bold rounded-xl flex items-center gap-2">
+        <Button
+          onClick={() => {
+            setEditingTestimonial(null);
+            setShowForm(true);
+          }}
+          className="bg-gradient-to-r from-secondary to-pink-500 text-white font-bold rounded-xl flex items-center gap-2"
+        >
           <Plus className="w-5 h-5" />
           Novo Depoimento
         </Button>
@@ -288,11 +317,11 @@ function VideosTab() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {[
-          { name: "Carlos Silva", company: "Instituto Silva", duration: "4:32" },
-          { name: "Fernanda Costa", company: "Educação Integral", duration: "5:15" },
-          { name: "João Oliveira", company: "Polo Educacional", duration: "6:10" },
-        ].map((video, idx) => (
-          <div key={idx} className="bg-slate-800/50 backdrop-blur-xl border border-slate-700/50 rounded-xl overflow-hidden hover:border-secondary/50 transition-all">
+          { id: "1", name: "Carlos Silva", company: "Instituto Silva", duration: "4:32" },
+          { id: "2", name: "Fernanda Costa", company: "Educação Integral", duration: "5:15" },
+          { id: "3", name: "João Oliveira", company: "Polo Educacional", duration: "6:10" },
+        ].map((video) => (
+          <div key={video.id} className="bg-slate-800/50 backdrop-blur-xl border border-slate-700/50 rounded-xl overflow-hidden hover:border-secondary/50 transition-all">
             <div className="aspect-video bg-gradient-to-br from-slate-700 to-slate-900 flex items-center justify-center">
               <Video className="w-8 h-8 text-slate-500" />
             </div>
@@ -300,7 +329,13 @@ function VideosTab() {
               <p className="text-white font-bold">{video.name}</p>
               <p className="text-slate-400 text-sm mb-4">{video.company}</p>
               <div className="flex gap-2">
-                <button className="flex-1 p-2 rounded-lg bg-blue-500/20 text-blue-400 hover:bg-blue-500/30 transition-all text-sm font-bold flex items-center justify-center gap-1">
+                <button
+                  onClick={() => {
+                    setEditingTestimonial({ name: video.name, company: video.company });
+                    setShowForm(true);
+                  }}
+                  className="flex-1 p-2 rounded-lg bg-blue-500/20 text-blue-400 hover:bg-blue-500/30 transition-all text-sm font-bold flex items-center justify-center gap-1"
+                >
                   <Edit className="w-4 h-4" />
                   Editar
                 </button>
