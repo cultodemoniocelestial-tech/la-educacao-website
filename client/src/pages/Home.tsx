@@ -68,19 +68,17 @@ export default function Home() {
               
               <AnimatedElement type="fadeInRight" duration={800} delay={200}>
                 <div className="relative">
-                  <GlowingElement>
-                    <div className="relative z-10 rounded-3xl overflow-hidden shadow-2xl border-2 border-secondary/30 backdrop-blur-sm">
-                      <img 
-                        src="/images/hero-students.png" 
-                        alt="Estudantes felizes aprendendo" 
-                        className="w-full h-auto object-cover"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent opacity-40" />
-                    </div>
-                  </GlowingElement>
+                  <div className="relative z-10 rounded-3xl overflow-hidden shadow-2xl border-2 border-secondary/30 backdrop-blur-sm">
+                    <img 
+                      src="/images/hero-students.png" 
+                      alt="Estudantes felizes aprendendo" 
+                      className="w-full h-auto object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent opacity-40" />
+                  </div>
                   
                   {/* Floating Cards */}
-                  <div className="absolute -bottom-6 -left-6 bg-white/10 backdrop-blur-xl p-6 rounded-2xl shadow-2xl border border-white/20 max-w-[220px] animate-bounce" style={{ animationDuration: "3s" }}>
+                  <div className="absolute -bottom-6 -left-6 bg-white/10 backdrop-blur-xl p-6 rounded-2xl shadow-2xl border border-white/20 max-w-[220px]">
                     <div className="flex items-center gap-3 mb-3">
                       <div className="w-12 h-12 rounded-full bg-gradient-to-br from-secondary to-pink-500 flex items-center justify-center text-white font-bold text-lg">
                         +
