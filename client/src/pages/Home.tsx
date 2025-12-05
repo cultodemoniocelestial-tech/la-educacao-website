@@ -5,6 +5,8 @@ import { ArrowRight, CheckCircle2, TrendingUp, Users, BookOpen, Award, ChevronRi
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { AnimatedElement, ParallaxElement, GlowingElement } from "@/components/AnimatedElements";
+import TestimonialCarousel from "@/components/TestimonialCarousel";
+import { testimonials } from "@/data/testimonials";
 
 export default function Home() {
   return (
@@ -307,6 +309,28 @@ export default function Home() {
                 </AnimatedElement>
               ))}
             </div>
+          </div>
+        </section>
+
+        {/* Testimonials Section */}
+        <section className="py-24 relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-b from-slate-800/50 to-slate-900/50" />
+          
+          <div className="container relative z-10">
+            <AnimatedElement type="fadeInUp" duration={600}>
+              <div className="text-center max-w-3xl mx-auto mb-16">
+                <div className="inline-flex items-center gap-2 mb-4 px-4 py-2 bg-secondary/10 rounded-full border border-secondary/30">
+                  <Users className="w-4 h-4 text-secondary" />
+                  <span className="text-secondary font-bold text-sm uppercase">Histórias de Sucesso</span>
+                </div>
+                <h2 className="text-5xl font-black text-white mb-6">O que nossos alunos dizem</h2>
+                <p className="text-xl text-slate-300">
+                  Milhares de alunos já transformaram suas carreiras com a LA Educação. Veja alguns depoimentos reais.
+                </p>
+              </div>
+            </AnimatedElement>
+
+            <TestimonialCarousel testimonials={testimonials} autoPlay={true} autoPlayInterval={6000} />
           </div>
         </section>
       </main>
