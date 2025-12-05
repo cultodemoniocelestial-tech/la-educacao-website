@@ -12,6 +12,8 @@ import FAQ from "./pages/FAQ";
 import Blog from "./pages/Blog";
 import BlogDetail from "./pages/BlogDetail";
 import Ouvidoria from "./pages/Ouvidoria";
+import AdminLogin from "./pages/AdminLogin";
+import AdminDashboard from "./pages/AdminDashboard";
 
 function Router() {
   return (
@@ -24,6 +26,8 @@ function Router() {
       <Route path="/blog" component={Blog} />
       <Route path="/blog/:slug" component={BlogDetail} />
       <Route path="/ouvidoria" component={Ouvidoria} />
+      <Route path="/admin/login" component={AdminLogin} />
+      <Route path="/admin/dashboard" component={AdminDashboard} />
       <Route path="/404" component={NotFound} />
       {/* Final fallback route */}
       <Route component={NotFound} />
